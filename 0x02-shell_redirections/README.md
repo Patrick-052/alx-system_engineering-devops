@@ -1,1 +1,1 @@
-Redirections
+redirections
