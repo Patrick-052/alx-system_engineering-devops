@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
-#Bash script that displays Best School 10 times
+# A script that displays Best School 10 times using until
 
-#1. The first line is a shebang line that contains the interpreter
-#2. The second line contains information on what the script is doing
-#3. The third line assigns the variable count to 1
-#4. The fourth line is the until loop command which will execute until the variable reaches the intended value
-#5. The fifth line is the command that outputs the value of count
-#6. The six line is the command that outputs the word Best school according to its count value
-#7. The seventh line is the command that increments the value of count by 1
-#8. The eighth line is the command that outputs the final value of count.
+i=1
 
-count=1
-
-until [ $count -eq 10 ]
+until [ $i -gt 10 ]
 do
-    echo "Best school"
+    echo "Best School"
+    ((i++))
 done
