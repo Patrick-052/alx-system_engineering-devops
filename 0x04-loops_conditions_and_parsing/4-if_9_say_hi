@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 #Bash script that displays Best School 9 times and Hi 1 time
+i=1
 
-count=1
-
-while [ $count -le 10 ]
+while [ $i -le 10 ]
 do
-    if [ $count -eq 10 ]; then
+    echo "Best school"
+    if [ $i -eq 10 ]; then
         echo "Hi"
     fi
-    echo "Best school"
-    ((count++))
+    ((x++))
 done
