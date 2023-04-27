@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#Bash script that displays Best School 10 times
+#Write a Bash script that displays Best School 10 times.
 
 #1. The first line of the script is a comment that explains what the script does.
 #2. The second line of the script is a shebang line that tells the shell interpreter to use the bash shell to run the script.
@@ -13,8 +13,9 @@
 #10. The tenth line of the script is a command that increments the value of count by 1.
 
 count=1
+
 while [ $count -le 10 ]
 do
-    echo "Best school"
+    echo "Best School"
     ((count++))
 done
