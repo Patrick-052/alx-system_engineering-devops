@@ -2,4 +2,4 @@
 #Bash script that displays the PID, along with the process name
 #+of processes whose name contain the word bash
 
-pgrep -L bash | awk '{print $1, $2}'
+pgrep -L bash
