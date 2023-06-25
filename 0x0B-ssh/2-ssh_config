@@ -1,0 +1,10 @@
+# Client configuration file
+
+# All users of the server
+Host *
+
+# location of the identity file
+IdentityFile ~/.ssh/school
+
+# connection with/without password
+PasswordAuthentication no
