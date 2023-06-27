@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Copying a file to a remote server from the client
+
+PATH_TO_FILE=~/some_page.html
+IP=107.22.143.92
+USERNAME=ubuntu
+PATH_TO_SSH_KEY=~/.ssh/id_rsa
+
+scp -i $PATH_TO_SSH_KEY $PATH_TO_FILE $USERNAME@$IP:~/
+echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
