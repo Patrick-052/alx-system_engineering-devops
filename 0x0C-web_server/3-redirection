@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Configuring my Nginx server so that /redirect_me
+# Configuring my server so that /redirect_me
 #+is redirecting to another page.
 
-sudo apt-get update
+sudo apt-get -y update
 sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
-sudo echo "Hello World!" | tee /var/www/html/index
-NGINX_CONF="/etc/nginx/sites-available/default"
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' $NGINX_CONF
-service nginx restart
+echo "Hello World" | sudo tee /var/www/html/index
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' /etc/nginx/sites-available/default
+sudo service nginx restart
