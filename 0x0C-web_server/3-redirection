@@ -2,12 +2,11 @@
 # Configuring my Nginx server so that /redirect_me
 #+is redirecting to another page.
 
-# Set the path to the Nginx configuration file
+apt-get update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index
 NGINX_CONF="/etc/nginx/sites-available/default"
-
-# Use sed to add the redirect configuration
 sed -i '/server_name _;/a \    location /redirect_me
 {\n        return 301 /another_page;\n    }' $NGINX_CONF
-
-# Restart or reload the Nginx service
-service nginx restart
+service nginx start
