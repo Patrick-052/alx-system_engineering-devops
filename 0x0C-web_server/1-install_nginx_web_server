@@ -2,6 +2,7 @@
 # installing and quering from the nginx webserver
 
 apt update
-apt-get install -y nginx
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
 echo "Hello World!" > /var/www/html/index.html
 service nginx start
