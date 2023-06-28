@@ -24,6 +24,12 @@ server {
 ",
 }
 
+# content on the landing page
+file { '/var/www/html/index.html':
+  ensure  => present,
+  content => 'Hello World!',
+}
+
 # Enable and start Nginx service
 service { 'nginx':
   ensure => running,
