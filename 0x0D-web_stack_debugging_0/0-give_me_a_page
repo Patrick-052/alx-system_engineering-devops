@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # Debugging an Apache webserver to return a landing page
 
-sudo systemctl start apache2
+sudo service apache2 start
