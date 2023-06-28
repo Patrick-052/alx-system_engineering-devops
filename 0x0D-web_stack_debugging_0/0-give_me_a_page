@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Debugging a Apache webserver to return a landing page
 
+
 echo "Hello Holberton" > /var/www/html/index.htnl
-systemctl restart Apache
+systemctl restart apache2
