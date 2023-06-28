@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Configuring my server so that /redirect_me
-#+is redirecting to another page.
+#+is redirecting to another page permanently.
 
 sudo apt-get -y update
 sudo apt-get -y install nginx
