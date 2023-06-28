@@ -1,38 +1,31 @@
+# Install Nginx package
 package { 'nginx':
-  ensure   => installed,
-  provider => 'apt',
+  ensure => installed,
 }
 
-file_line { 'default_listen':
-  path    => '/etc/nginx/sites-available/default',
-  line    => 'listen 80 default_server;',
-  match   => 'listen 80 default_server',
-  require => Package['nginx'],
-}
-
-file_line { 'default_redirect':
-  path    => '/etc/nginx/sites-available/default',
-  line    => 'location /redirect_me {',
-  match   => 'location / {',
-  require => Package['nginx'],
-}
-
-file_line { 'redirect_return':
-  path    => '/etc/nginx/sites-available/default',
-  line    => 'return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;',
-  match   => 'location /redirect_me {',
-  require => Package['nginx'],
-}
-
-file_line { 'default_end':
-  path    => '/etc/nginx/sites-available/default',
-  line    => '}',
-  match   => 'server {',
-  require => [Package['nginx'], File_line['redirect_return']],
-}
-
-file { '/var/www/html/index.html':
+# Configure Nginx
+file { '/etc/nginx/sites-available/default':
   ensure  => present,
-  content => 'Hello World!',
-  require => Package['nginx'],
+  content => "
+server {
+    listen 80 default_server;
+    server_name _;
+
+    location /redirect_me {
+            return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+    }
+
+    error_page 404 /404.html;
+
+    location = /404.html{
+            internal;
+    }
+}
+",
+}
+
+# Enable and start Nginx service
+service { 'nginx':
+  ensure => running,
+  enable => true,
 }
