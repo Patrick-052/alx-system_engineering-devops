@@ -7,7 +7,7 @@ sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 
 Config_file=/etc/nginx/sites-available/default
-sed -i 's/server_name _;/&\n\tadd_header X-Served-By "hostname";' $Config_file
+sed -i "s/server_name _;/&\n\tadd_header X-Served-By '$hostname';" $Config_file
 
 # echo "server {
 #    listen 80 default_server;
