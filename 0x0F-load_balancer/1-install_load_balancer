@@ -20,4 +20,7 @@ backend webservers
     server 194200-web-02 54.157.181.234:80 check
 " | sudo tee /etc/haproxy/haproxy.cfg > /dev/null
 
+# enable haproxy to be started by init script
+echo "ENABLED=1" | sudo tee -a /etc/default/haproxy
+
 sudo service haproxy restart
