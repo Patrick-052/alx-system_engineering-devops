@@ -12,7 +12,8 @@ echo "server {
    listen [::]:80 default_server;
    root /var/www/html;
    index index.html;
-   add_header X-Served-By '$hostname';
+   server_name _;
+   add_header X-Served-By '194200-web-01';
    location /redirect_me {
       return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
    }
@@ -21,5 +22,4 @@ echo "server {
       internal;
    }
 }" > $Config_file
-
 sudo service nginx restart
