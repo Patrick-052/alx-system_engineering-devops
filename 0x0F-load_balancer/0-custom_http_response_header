@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Configuring Nginx so that its HTTP
+#+ response contains a custom header
+
+Config_file=/etc/nginx/sites-available/default
+echo "server {
+   listen 80 default_server;
+   listen [::]:80 default_server;
+   root /var/www/html;
+   index index.html;
+   location / {
+      add_header X-Served-By $(hostname);
+   }
+}" > $Config_file
+sudo service nginx restart
