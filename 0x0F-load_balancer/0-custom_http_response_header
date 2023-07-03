@@ -20,7 +20,11 @@ echo "server {
       internal;
    }
    location / {
-      add_header X-Served-By $(hostname);
-   }
+        # First attempt to serve request as file, then
+        # as directory, then fall back to displaying a 404.
+        try_files $uri $uri/ =404;
+        # Adding a custom header
+        add_header X-Served-By '194200-web-01';
+    }
 }" > $Config_file
 sudo service nginx restart
