@@ -7,35 +7,19 @@ sudo apt-get -y install nginx
 sudo ufw allow 'Nginx HTTP'
 
 Config_file=/etc/nginx/sites-available/default
-
-echo "Hello World!" | sudo tee /var/www/html/index.html
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
-
-sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/ permanent;' $Config_file
-sudo sed -i "/server_name _;/a add_header X-Served-By '$hostname';" $Config_file
-sudo sed -i '/location /redirect_me {\n\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n    }/a error_page 404 /404.html;/a location = /404.html{\n\tinternal;\n\t}'
-
-# echo "server {
-#    listen 80 default_server;
-#    listen [::]:80 default_server;
-#    root /var/www/html;
-#    index index.html;
-#    server_name_;
-#    add_header X-Served-By '$hostname';
-#    location /redirect_me {
-#       return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-#    }
-#    error_page 404 /404.html;
-#    location = /404.html{
-#       internal;
-#    }
-#    location / {
-#         # First attempt to serve request as file, then
-#         # as directory, then fall back to displaying a 404.
-#         try_files $uri $uri/ =404;
-#         # Adding a custom header
-#         add_header X-Served-By '194200-web-01';
-#     }
-# }" > $Config_file
+echo "server {
+   listen 80 default_server;
+   listen [::]:80 default_server;
+   root /var/www/html;
+   index index.html;
+   add_header X-Served-By '$hostname';
+   location /redirect_me {
+      return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
+   }
+   error_page 404 /404.html;
+   location = /404.html{
+      internal;
+   }
+}" > $Config_file
 
 sudo service nginx restart
