@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # A brief procedure of debugging nginx
 sudo sed -i "s/8080/80/" /etc/nginx/sites-enabled/default
-servic enginx  restart
+service nginx  restart
 service nginx status | grep "nginx is not running"
