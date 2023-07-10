@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# confguring subdomains such that they point
+#+ to the load-balancer
+
+get_subdomain_info() {
+  domain=$1
+  subdomain=$2
+
+  record_type=$(dig +noall +answer "$subdomain.$domain" | awk '{print $4}')
+  destination=$(dig +noall +answer "$subdomain.$domain" | awk '{print $5}')
+  echo "The subdomain $subdomain is a $record_type record and points to $destination."
+
+}
+
+domain=$1
+subdomain=$2
+
+if [[ -z $subdomain ]]; then
+  get_subdomain_info "$domain" www
+  get_subdomain_info "$domain" lb-01
+  get_subdomain_info "$domain" web-01
+  get_subdomain_info "$domain" web-02
+else
+  get_subdomain_info "$domain" "$subdomain"
+fi
