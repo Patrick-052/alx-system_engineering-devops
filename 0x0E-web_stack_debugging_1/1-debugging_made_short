@@ -2,4 +2,4 @@
 # A brief procedure of debugging nginx
 service nginx start
 curl 0:80
-service nginx status | grep "nginx is not running"
+service nginx stop
