@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # A brief procedure of debugging nginx
-service nginx restart
-service nginx stop
-service nginx status
+service nginx start
+curl 0:80
+service nginx status | grep "nginx is not running"
