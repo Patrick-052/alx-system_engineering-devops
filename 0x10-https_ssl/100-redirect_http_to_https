@@ -41,8 +41,6 @@ frontend patrick-52-frontend
     bind *:80
     mode http
     http-request set-header X-Forwarded-Proto http
-    acl has_www hdr_beg(host) -i www
-    http-request redirect code 301 location https://www.patrick-52.tech unless has_www
     default_backend patrick-52-backend
 
 frontend patrick-52-frontend-https
