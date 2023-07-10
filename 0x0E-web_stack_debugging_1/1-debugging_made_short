@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # A brief procedure of debugging nginx
-rm /etc/nginx/sites-enabled/default
-ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
-service nginx restart
+service nginx stop
+service nginx status
 
