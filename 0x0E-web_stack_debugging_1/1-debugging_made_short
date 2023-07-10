@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # A brief procedure of debugging nginx
-service nginx start
 curl 0:80
 service nginx stop
+service nginx status
