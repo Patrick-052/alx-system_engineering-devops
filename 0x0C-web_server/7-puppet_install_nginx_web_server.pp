@@ -1,9 +1,17 @@
-# Install Nginx package
 package { 'nginx':
   ensure => installed,
 }
 
-# Configure Nginx
+file { '/var/www/html/index.html':
+  ensure  => present,
+  content => "Hello World!",
+}
+
+file { '/var/www/html/404.html':
+  ensure  => present,
+  content => "Ceci n'est pas une page",
+}
+
 file { '/etc/nginx/sites-available/default':
   ensure  => present,
   content => "
@@ -24,13 +32,6 @@ server {
 ",
 }
 
-# content on the landing page
-file { '/var/www/html/index.html':
-  ensure  => present,
-  content => 'Hello World!',
-}
-
-# Enable and start Nginx service
 service { 'nginx':
   ensure => running,
   enable => true,
