@@ -46,15 +46,15 @@ frontend patrick-52-frontend
 frontend patrick-52-frontend-https
     bind *:443 ssl crt /etc/haproxy/certs/www.patrick-52.tech.pem 
     http-request set-header X-Forwarded-Proto https
-    acl letsencrypt-acl path_beg /.well-known/acme-challenge/     
-    use_backend letsencrypt-backend if letsencrypt-acl
+    #acl letsencrypt-acl path_beg /.well-known/acme-challenge/
+    #use_backend letsencrypt-backend if letsencrypt-acl
     default_backend patrick-52-backend
 
 backend patrick-52-backend
     balance roundrobin
     redirect scheme https if !{ ssl_fc }
-    server 194200-web-01 107.22.143.92:80 check
-    server 194200-web-02 54.157.181.234:80 check
+    server 194200-web-01 100.25.2.68:80 check
+    server 194200-web-02 18.210.15.42:80 check
 
 backend letsencrypt-backend
    server letsencrypt 127.0.0.1:54321
