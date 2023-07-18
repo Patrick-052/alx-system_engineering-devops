@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+# adding the file that contains public GPG build key
+sudo apt-key add signature.key
+
+# adding the apt repo
+sudo sh -c 'echo "deb http://repo.mysql.com/apt/ubuntu bionic mysql-5.7"
+>> /etc/apt/sources.list.d/mysql.list'
+
+# updating the apt repo
+sudo apt-get update
+
+# checking for available versions
+sudo apt-cache policy mysql-server
+
+# installing mysql 5.7
+sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
