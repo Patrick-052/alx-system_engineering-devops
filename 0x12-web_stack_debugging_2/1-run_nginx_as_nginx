@@ -2,7 +2,7 @@
 # Debugging and changing nginx user
 
 Cnf='/etc/nginx/nginx.conf'
-sudo sed -i 's/#user www-data;/user nginx;' "$Cnf"
+sudo sed -i 's/#user www-data;/user nginx;/' "$Cnf"
 
 pgrep -f apache2 | sudo xargs -I {} kill {}
 
