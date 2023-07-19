@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
 # command that gives a user superuser privileges
 
-if [ -z "$1" ]; then
-   whoami
-else
-   if id "$1" &>/dev/null; then
-      su -s /bin/bash -c "whoami" "$1"
-   else
-      echo "Error: User '$1' does not exist on the system."
-      exit 1
-   fi
-fi
+su -u "$1" whoami
