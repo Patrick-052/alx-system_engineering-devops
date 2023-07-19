@@ -9,7 +9,6 @@ echo "Hello World!" | sudo tee /var/www/html/index.html
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
 
 Config_path=/etc/nginx/sites-available/default
-sudo sed -i '\|server_name _;|a\\n\terror_page 404 /404.html;' $Config_path
-sudo sed -i '\|error_page 404 /404.html|a\\n\tlocation =
-/404.html{\n\t\tinternal;\n\t}' $Config_path
+sudo sed -i '\|server_name _;|a\\n\terror_page 404 /404.html;' "$Config_path"
+sudo sed -i '\|error_page 404 /404.html|a\\n\tlocation = /404.html{\n\t\tinternal;\n\t}' "$Config_path"
 sudo service nginx restart
