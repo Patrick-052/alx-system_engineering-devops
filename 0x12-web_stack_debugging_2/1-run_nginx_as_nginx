@@ -5,7 +5,7 @@ Cnf='/etc/nginx/nginx.conf'
 sudo sed -i 's/#user www-data;/user nginx;/' "$Cnf"
 chmod 644 /etc/nginx/nginx.conf
 
-pgrep -f apache2 | sudo xargs -I {} kill {}
+pkill apache2
 
 Config='/etc/nginx/sites-available/default'
 sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' "$Config"
