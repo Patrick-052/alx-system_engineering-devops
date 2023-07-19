@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Debugging and changing nginx user
+
+Cnf='/etc/nginx/nginx.conf'
+sudo sed -i 's/#user www-data;/user nginx;' "$Cnf"
+
+pgrep -f apache2 | sudo xargs -I {} kill {}
+
+sudo rm -f /etc/nginx/sites-enabled/default
+Config='/etc/nginx/sites-available/default'
+sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' "$Config"
+sudo sed -i 's/listen [::]:80 default_server ipv6only=on;/listen [::]:8080 default_server ipv6only=on;/' "$Config"
+
+ln -s $Config /etc/nginx/sites-enabled/default
+
+sudo service nginx restart
