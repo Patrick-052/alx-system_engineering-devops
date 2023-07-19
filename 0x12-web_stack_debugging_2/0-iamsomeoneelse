@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 # command that gives a user superuser privileges
 
-su -s /bin/bash -c "whoami" "$1"
+if [ -n "$1" ]; then
+   su -c "whoami" "$1"
+else
+   su -s /bin/bash -c "whoami" "$1"
+fi
