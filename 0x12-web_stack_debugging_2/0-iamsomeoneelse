@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # command that gives a user superuser privileges
 
-su - "$1" -c "whoami"
+su -c "whoami" "$1"
