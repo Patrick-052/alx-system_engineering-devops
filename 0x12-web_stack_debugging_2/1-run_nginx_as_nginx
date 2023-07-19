@@ -11,4 +11,5 @@ Config='/etc/nginx/sites-available/default'
 sudo sed -i 's/listen 80 default_server;/listen 8080 default_server;/' "$Config"
 sudo sed -i 's/listen [::]:80 default_server ipv6only=on;/listen [::]:8080 default_server ipv6only=on;/' "$Config"
 
-sudo service nginx restart
+sudo -u nginx service nginx start
+
