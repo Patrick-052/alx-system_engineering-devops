@@ -3,6 +3,7 @@
 
 Cnf='/etc/nginx/nginx.conf'
 sudo sed -i 's/#user www-data;/user nginx;/' "$Cnf"
+chmod 644 /etc/nginx/nginx.conf
 
 pgrep -f apache2 | sudo xargs -I {} kill {}
 
