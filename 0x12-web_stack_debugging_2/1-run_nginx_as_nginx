@@ -2,8 +2,8 @@
 # Debugging and changing nginx user
 
 Cnf='/etc/nginx/nginx.conf'
-sed -i 's/#user www-data/user nginx/' "$Cnf"
-sed -i "s/80/8080/g" /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
+sed -i 's/#user www-data/user nginx/' $Cnf
+sed -i 's/80/8080/g' /etc/nginx/sites-available/default
+chmod 644 $Cnf
 pkill apache2
 su -u nginx service nginx restart
