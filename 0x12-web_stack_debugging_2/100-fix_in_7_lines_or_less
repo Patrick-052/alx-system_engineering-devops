@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 # Debugging and changing nginx user
 
-sed -i 's/#user www-data/user nginx/' /etc/nginx/nginx.conf
+cnf='/etc/nginx/nginx.conf'
+sed -i 's/#user www-data/user nginx/' $cnf
 sed -i 's/80/8080/g' /etc/nginx/sites-available/default
-chmod 644 /etc/nginx/nginx.conf
+chmod 644 $cnf
 pkill apache2
 su -c "service nginx restart" nginx
