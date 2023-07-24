@@ -1,10 +1,19 @@
 #!/usr/bin/python3
 """Gathering data from a REST API for a given
    employee ID, and returning information about
-   his/her TODO list progress."""
+   his/her TODO list progress"""
 
 import requests
 from sys import argv
+
+
+def get_employee_name(user_id):
+    url = f'https://jsonplaceholder.typicode.com/users/{user_id}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        return response.json()['name']
+    else:
+        return None
 
 
 if __name__ == "__main__":
@@ -13,7 +22,7 @@ if __name__ == "__main__":
     url = 'https://jsonplaceholder.typicode.com/todos'
     req = requests.get(url, params=user)
     todos = req.json()
-    employee_name = todos[0]['userId']
+    employee_name = get_employee_name(user_id)
     tasks = [task for task in todos if task['completed']]
     Tt_tasks = len(todos)
 
