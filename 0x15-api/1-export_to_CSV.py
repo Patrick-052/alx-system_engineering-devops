@@ -32,12 +32,14 @@ if __name__ == "__main__":
     for task in tasks:
         print("\t", task['title'])
 
+    name = employee_name.split(" ")[0]
     frmt = ['userId', 'employee_name', 'completed', 'title']
-    data = [(user_id, employee_name, task["completed"], task["title"])
-            for task in todos]
+    data = [(user_id, name, task["completed"],
+            task["title"]) for task in todos]
+
     filename = f'{user_id}.csv'
     with open(filename, 'w') as csv_file:
-        csvwriter = csv.writer(csv_file)
+        csvwriter = csv.writer(csv_file, quoting=csv.QUOTE_ALL)
         csvwriter.writerow(frmt)
         for task in data:
             csvwriter.writerow(task)
