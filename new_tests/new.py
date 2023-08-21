@@ -1,1 +1,0 @@
-trying automating scripts
