@@ -15,7 +15,7 @@ get_subdomain_info() {
 domain=$1
 subdomain=$2
 
-if [[ "$#" -eq 1 ]]; then
+if [[ -z $subdomain ]]; then
   get_subdomain_info "$domain" www
   get_subdomain_info "$domain" lb-01
   get_subdomain_info "$domain" web-01

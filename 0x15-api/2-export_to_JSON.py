@@ -25,4 +25,4 @@ if __name__ == "__main__":
                       for task in todos]}
 
     with open(filename, 'w') as file:
-        json.dump(dict, file)
+        json.dump(dict,  file)
