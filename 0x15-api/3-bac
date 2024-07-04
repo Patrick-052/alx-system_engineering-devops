@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+"""Exporting data to json file containing a dictionary of lists"""
+
+import json
+import requests
+
+
+if __name__ == "__main__":
+    url = 'https://jsonplaceholder.typicode.com/todos/users'
+
+    res = requests.get(url)
+    users = res.json()
+
+    data = {}
+    for user in users:
+        user_id = user.get('id')
+        username = user.get('username')
+        url_user = f'url + {user_id}'
+        url_data = 'https://jsonplaceholder.typicode.com/todos'
+        req = requests.get(url_data)
+        todos = req.json()
+
+        data[user_id] = []
+        for task in todos:
+            data[user_id].append({
+                "task": task.get('title'),
+                "completed": task.get('completed'),
+                "username": username
+            })
+
+    filename = 'todo_all_employees.json'
+    with open(filename, 'w') as file:
+        json.dump(dict, file)

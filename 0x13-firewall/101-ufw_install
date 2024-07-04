@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# ufw firewall installation and configuration
+
+# Update the package lists
+sudo apt-get -y update
+
+# Install UFW
+sudo apt-get -y install ufw
+
+# Disable UFW
+sudo ufw disable
+
+# Set default policies
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+
+# Stop UFW service
+sudo systemctl stop ufw
+
+# Allow specific ports
+sudo ufw allow 22/tcp #SSH
+sudo ufw allow 443/tcp #HTTPS
+sudo ufw allow 80/tcp #HTTP
+
+# Enable UFW
+sudo ufw enable
+sudo systemctl restart ufw
